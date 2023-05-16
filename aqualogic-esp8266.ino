@@ -3,10 +3,11 @@
 #include <SoftwareSerial.h>
 #include <ArduinoOTA.h>
 #include "variables.h"
+#include "secret.h"
 #include "process_LCD_packets.h"
 
-const char* ssid = "SSID";
-const char* password = "PASSWORD";
+const char* ssid = _SSID;         // SSID and PASSWORD are stored in secret.h
+const char* password = _PASSWORD;
 const char* hostname = "RS485Module";
 
 SoftwareSerial RS485Serial(D4, D3); // RX, TX

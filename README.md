@@ -2,6 +2,8 @@
 
 ## aqualogic-esp8266
 
+<img src="images/hardware.jpg" alt="Image Description" width="300" height="200">
+
 This project is an ESP8266 serial device designed to interface with a Hayward ProLogic pool automation system. The ESP8266 device acts as a bridge between the pool automation system's controller and a web interface, allowing users to interact with the system remotely.
 
 The ESP8266 device utilizes a serial connection to communicate with the pool automation system's controller. It receives data in HEX format via RS485 using a TTL to RS485 module, and decodes this data for use on the web interface. The web interface is essentially a mirror of the physical controller, providing users with a familiar and intuitive way to control and monitor the pool automation system.
@@ -33,7 +35,6 @@ With this ESP8266 serial device, users can conveniently manage and monitor their
 <br />
 <img src="images/desktop.png" alt="Image Description" height="300">
 <img src="images/phone.PNG" alt="Image Description" width="200" height="300">
-<img src="images/hardware.jpg" alt="Image Description" width="300" height="200">
 <img src="images/display.jpg" alt="Image Description" width="300" height="200">
 <img src="images/prologic.jpg" alt="Image Description" width="300" height="200">
 <img src="images/RS485_module.jpg" alt="Image Description" width="300" height="200">

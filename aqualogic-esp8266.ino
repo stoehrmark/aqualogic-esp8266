@@ -57,18 +57,21 @@ void loop() {
   // Handle web server requests
   server.handleClient();
   // Read RS485Serial Data
-  if (RS485Serial.available()) {    
+  if (RS485Serial.available()) {  
+         
       byte response = RS485Serial.read();
       buffer[bufferIndex++] = response;
+      if (prevByte == the_packet_end[0] && response == the_packet_end[1]) {
+        send_btn_command();
+      }
       if (prevByte == the_packet_start[0] && response == the_packet_start[1]) {
         bufferIndex = 0;
       }
       if (prevByte == the_packet_end[0] && response == the_packet_end[1]) {
-        send_btn_command();
         the_packet_Buffer();
-       // packetBuffer();
         bufferIndex = 0;
       }
+   
       prevByte = response;
   }  
 }
@@ -89,6 +92,7 @@ if (buffer[0] == 0x1 && buffer[1] == 0x1) { //10 02 01 01 00 14 10 03 its a keep
       //Serial.println("----------------------  keep-alive  ----------------------");
       // Serial.println(the_packet);
       // Serial.println();
+
 /*********************************************************************************************\
  ***** LED STATUS
 \*********************************************************************************************/

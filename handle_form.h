@@ -45,11 +45,13 @@ if (server.hasArg("control_btn")) {// && server.hasArg("parameter2")
 }
 void send_btn_command(){
 if(btn_send_yes == 1){
-  for (int i = 0; i < 5; i++) {
-  RS485Serial.write(btn_command_to_send.c_str());
+  for (int i = 0; i < 10; i++) {
+RS485Serial.print(btn_command_to_send);
+
+  //RS485Serial.write(btn_command_to_send.c_str());
   Serial.print("RS485Serial.write: ");
   Serial.println(btn_command_to_send);
-  delay(100);
+  delay(10);
   }
   btn_send_yes = 0;
 }

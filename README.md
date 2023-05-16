@@ -36,9 +36,14 @@ With this ESP8266 serial device, users can conveniently manage and monitor their
 ## Credits
 I am extremely grateful to the following individuals for their invaluable inspiration in my work:
 
-swilson @ Home Assistant Hayward AquaLogic / ProLogic automation -- https://community.home-assistant.io/t/hayward-aqualogic-prologic-automation
-Desert Home -- http://www.desert-home.com/p/swimming-pool.html
-Chase Durand -- https://github.com/ChaseDurand/Pool-Pi
+swilson @ Home Assistant Hayward AquaLogic / ProLogic automation
+-- https://community.home-assistant.io/t/hayward-aqualogic-prologic-automation
+
+Desert Home
+-- http://www.desert-home.com/p/swimming-pool.html
+
+Chase Durand
+-- https://github.com/ChaseDurand/Pool-Pi
 
 Their innovative ideas and insights have greatly influenced my project, providing the necessary inspiration.
 <br />

@@ -58,12 +58,11 @@ void loop() {
   server.handleClient();
   // Read RS485Serial Data
   if (RS485Serial.available()) {  
-         
       byte response = RS485Serial.read();
       buffer[bufferIndex++] = response;
-      if (prevByte == the_packet_end[0] && response == the_packet_end[1]) {
-        send_btn_command();
-      }
+      // if (prevByte == the_packet_end[0] && response == the_packet_end[1]) {
+      //   send_btn_command();
+      // }
       if (prevByte == the_packet_start[0] && response == the_packet_start[1]) {
         bufferIndex = 0;
       }
@@ -71,19 +70,18 @@ void loop() {
         the_packet_Buffer();
         bufferIndex = 0;
       }
-   
       prevByte = response;
   }  
 }
 
 void the_packet_Buffer() {
   //Build the_packet
-  the_packet = "";
-  for (int i = 0; i < bufferIndex; i++) {
-    String hexString = String(buffer[i], HEX);
-    the_packet += "0x" + hexString + " ";
-  }
-  the_packet.trim();
+  // the_packet = "";
+  // for (int i = 0; i < bufferIndex; i++) {
+  //   String hexString = String(buffer[i], HEX);
+  //   the_packet += "0x" + hexString + " ";
+  // }
+  // the_packet.trim();
 ///////////   Break Down the_packet into Categories    ////////////////////////////////////
 /*********************************************************************************************\
  ***** KEEP ALIVE
@@ -92,7 +90,8 @@ if (buffer[0] == 0x1 && buffer[1] == 0x1) { //10 02 01 01 00 14 10 03 its a keep
       //Serial.println("----------------------  keep-alive  ----------------------");
       // Serial.println(the_packet);
       // Serial.println();
-
+      
+send_btn_command();
 /*********************************************************************************************\
  ***** LED STATUS
 \*********************************************************************************************/

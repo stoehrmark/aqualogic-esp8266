@@ -8,7 +8,9 @@ int bufferIndex = 0;
 String the_packet = "";
 byte the_packet_start[] = {0x10, 0x02};
 byte the_packet_end[] = {0x10, 0x03};
-String btn_command_to_send = "";
+//String btn_command_to_send = "";
+//uint8_t btn_command_to_send[16];
+////uint8_t btn_command_to_send[];
 int btn_send_yes = 0;
 /*********************************************************************************************\
  ***** HTML LED color PICK ONLY ONE!

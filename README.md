@@ -33,6 +33,14 @@ With this ESP8266 serial device, users can conveniently manage and monitor their
 - Interactive setting page to set varibles via web interface (EEPROM)
 - Quick view page to see all messages on one page (Past values)
 
+## Credits
+I am extremely grateful to the following individuals for their invaluable inspiration in my work:
+
+swilson @ Home Assistant Hayward AquaLogic / ProLogic automation -- https://community.home-assistant.io/t/hayward-aqualogic-prologic-automation
+Desert Home -- http://www.desert-home.com/p/swimming-pool.html
+Chase Durand -- https://github.com/ChaseDurand/Pool-Pi
+
+Their innovative ideas and insights have greatly influenced my project, providing the necessary inspiration.
 <br />
 <br />
 <img src="images/phone.PNG" alt="Image Description" width="200" height="300">

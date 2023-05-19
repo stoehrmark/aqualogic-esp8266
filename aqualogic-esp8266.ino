@@ -236,8 +236,18 @@ process_LCD_packets(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
 \*********************************************************************************************/
 } else {
       keep_alive_count = 0;
-      Serial.println("----------------------  OTHER  ----------------------");
-      Serial.println(the_packet);
+      // Serial.println("----------------------  OTHER  ----------------------");
+      // Serial.println(the_packet);
+      // String text = "";
+      // for (int i = 0; i < sizeof(buffer); i++) {
+      //   text += (char)buffer[i];
+
+      // }
+      // text.trim();
+      // for (int i = 0; i < text.length(); i++) {
+      //   Serial.print(text[i]);
+      // }
+      //  Serial.println();
 }
 }
 

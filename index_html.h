@@ -249,17 +249,24 @@ const char* index_html = R"=====(
           <div>Check<br />System</div>
           <div id="led_check_system" class="led $CHECK_SYSTEM"></div>
         </div>
-        <form method="GET">
         <div class="menu_input_area">
-        
+      <form method="GET" action="/form">  
 			<div><div><button name="control_btn" value="left" type="submit"><</button></div></div>
+      </form>
+      <form method="GET" action="/form">     
 			<div><div><button name="control_btn" value="plus" type="submit">+</button></div>
-			<div><button name="control_btn" value="menu" type="submit">Menu</button></div>
+      </form>
+      <form method="GET" action="/form">
+      <div><button name="control_btn" value="menu" type="submit">Menu</button></div>
+      </form>
+      <form method="GET" action="/form">
       <div><button name="control_btn" value="minus" type="submit">-</button></div></div>
+      </form>
+      <form method="GET" action="/form">   
       <div><div><button name="control_btn" value="right" type="submit">></button></div></div>
-      
+      </form>
+
 		</div>
-</form>
 		</div>
 		<div class="row">
         <div class="col">

@@ -11,6 +11,11 @@ uint8_t btn_hex_aux3[]            = {0x10, 0x02, 0x00, 0x02, 0x00, 0x08, 0x00, 0
 uint8_t btn_hex_aux4[]            = {0x10, 0x02, 0x00, 0x02, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x34, 0x10, 0x03};
 uint8_t btn_hex_aux5[]            = {0x10, 0x02, 0x00, 0x02, 0x00, 0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x54, 0x10, 0x03};
 uint8_t btn_hex_aux6[]            = {0x10, 0x02, 0x00, 0x02, 0x00, 0x40, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x94, 0x10, 0x03};
+uint8_t btn_hex_menu[]            = {0x10, 0x02, 0x00, 0x02, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x18, 0x10, 0x03};
+uint8_t btn_hex_left[]            = {0x10, 0x02, 0x00, 0x02, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03};
+uint8_t btn_hex_right[]           = {0x10, 0x02, 0x00, 0x02, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x16, 0x10, 0x03};
+uint8_t btn_hex_plus[]            = {0x10, 0x02, 0x00, 0x02, 0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00, 0x54, 0x10, 0x03};
+uint8_t btn_hex_minus[]           = {0x10, 0x02, 0x00, 0x02, 0x10, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x10, 0x03};
 
 // Define constants for the array sizes
 const int btn_hex_service_size = sizeof(btn_hex_service) / sizeof(btn_hex_service[0]);
@@ -26,6 +31,11 @@ const int btn_hex_aux3_size = sizeof(btn_hex_aux3) / sizeof(btn_hex_aux3[0]);
 const int btn_hex_aux4_size = sizeof(btn_hex_aux4) / sizeof(btn_hex_aux4[0]);
 const int btn_hex_aux5_size = sizeof(btn_hex_aux5) / sizeof(btn_hex_aux5[0]);
 const int btn_hex_aux6_size = sizeof(btn_hex_aux6) / sizeof(btn_hex_aux6[0]);
+const int btn_hex_menu_size = sizeof(btn_hex_menu) / sizeof(btn_hex_menu[0]);
+const int btn_hex_left_size = sizeof(btn_hex_left) / sizeof(btn_hex_left[0]);
+const int btn_hex_right_size = sizeof(btn_hex_right) / sizeof(btn_hex_right[0]);
+const int btn_hex_plus_size = sizeof(btn_hex_plus) / sizeof(btn_hex_plus[0]);
+const int btn_hex_minus_size = sizeof(btn_hex_minus) / sizeof(btn_hex_minus[0]);
 
 // Define an enum to represent the different buttons
 enum Button {
@@ -41,7 +51,12 @@ enum Button {
   AUX3,
   AUX4,
   AUX5,
-  AUX6
+  AUX6,
+  MENU,
+  LEFT,
+  RIGHT,
+  PLUS,
+  MINUS
 };
 
 Button selectedButton = AUX1;
@@ -76,6 +91,16 @@ void handleForm() {
       selectedButton = AUX5;
     } else if (control_btn == "aux6") {
       selectedButton = AUX6;
+    } else if (control_btn == "menu") {
+      selectedButton = MENU;
+    } else if (control_btn == "left") {
+      selectedButton = LEFT;
+    } else if (control_btn == "right") {
+      selectedButton = RIGHT;
+    } else if (control_btn == "plus") {
+      selectedButton = PLUS;
+    } else if (control_btn == "minus") {
+      selectedButton = MINUS;
     }
     
     btn_send_yes = 1;
@@ -145,6 +170,26 @@ void send_btn_command() {
       case AUX6:
         btn_command_to_send = btn_hex_aux6;
         btn_command_size = btn_hex_aux6_size;
+        break;
+      case MENU:
+        btn_command_to_send = btn_hex_menu;
+        btn_command_size = btn_hex_menu_size;
+        break;
+      case LEFT:
+        btn_command_to_send = btn_hex_left;
+        btn_command_size = btn_hex_left_size;
+        break;
+      case RIGHT:
+        btn_command_to_send = btn_hex_right;
+        btn_command_size = btn_hex_right_size;
+        break;
+      case PLUS:
+        btn_command_to_send = btn_hex_plus;
+        btn_command_size = btn_hex_plus_size;
+        break;
+      case MINUS:
+        btn_command_to_send = btn_hex_minus;
+        btn_command_size = btn_hex_minus_size;
         break;
     }
     

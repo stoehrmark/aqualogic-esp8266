@@ -106,7 +106,7 @@ if (keep_alive_count == 1 && btn_send_yes == 1){
  ***** LED STATUS
 \*********************************************************************************************/
 } else if (buffer[0] == 0x1 && buffer[1] == 0x2) { //if packet starts with a 10 02 01 02 its an LED Status
-      Serial.println("----------------------  LED Status  ----------------------");
+      //Serial.println("----------------------  LED Status  ----------------------");
   keep_alive_count = 0;
       byte bitArray[2][8];
       for (int i = 0; i < 2; i++) {
@@ -145,7 +145,7 @@ if (keep_alive_count == 1 && btn_send_yes == 1){
  ***** LCD Packet
 \*********************************************************************************************/
 } else if (buffer[0] == 0x1 && buffer[1] == 0x3) { //if packet starts with a 10 02 01 03 its an LCD Packet  the_packet.startsWith("0x1 0x3 ")
-      Serial.println("----------------------  LCD Packet  ----------------------");
+      //Serial.println("----------------------  LCD Packet  ----------------------");
   keep_alive_count = 0;
       //Serial.println(the_packet);
       // String text = "";

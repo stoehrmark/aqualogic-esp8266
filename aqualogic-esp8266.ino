@@ -5,6 +5,8 @@
 #include "variables.h"
 #include "secret.h"
 #include "process_LCD_packets.h"
+#include "process_LCD_packets_SERVICE.h"
+#include "process_LCD_packets_LONG.h"
 
 const char* ssid = _SSID;         // SSID and PASSWORD are stored in secret.h
 const char* password = _PASSWORD;
@@ -89,25 +91,20 @@ void the_packet_Buffer() {
 
 if (buffer[0] == 0x1 && buffer[1] == 0x1) { //10 02 01 01 00 14 10 03 its a keep-alive packet not useful
       //Serial.print("----------------------  keep-alive  ----------------------");
-       //Serial.println(keep_alive_count);     
+      //Serial.println(keep_alive_count);     
       // Serial.println(the_packet);
       // Serial.println();
-
-keep_alive_count++;   
-
-// if (keep_alive_count >= 5){
-//   keep_alive_count = 0;
-// } 
-if (keep_alive_count == 1 && btn_send_yes == 1){
-  send_btn_command();
-  keep_alive_count = 0;
-}  
+      keep_alive_count++;   
+      if (keep_alive_count == 1 && btn_send_yes == 1){
+        send_btn_command();
+        keep_alive_count = 0;
+      }  
 /*********************************************************************************************\
  ***** LED STATUS
 \*********************************************************************************************/
 } else if (buffer[0] == 0x1 && buffer[1] == 0x2) { //if packet starts with a 10 02 01 02 its an LED Status
+      keep_alive_count = 0;
       //Serial.println("----------------------  LED Status  ----------------------");
-  keep_alive_count = 0;
       byte bitArray[2][8];
       for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 8; j++) {
@@ -145,8 +142,8 @@ if (keep_alive_count == 1 && btn_send_yes == 1){
  ***** LCD Packet
 \*********************************************************************************************/
 } else if (buffer[0] == 0x1 && buffer[1] == 0x3) { //if packet starts with a 10 02 01 03 its an LCD Packet  the_packet.startsWith("0x1 0x3 ")
+      keep_alive_count = 0;
       //Serial.println("----------------------  LCD Packet  ----------------------");
-  keep_alive_count = 0;
       //Serial.println(the_packet);
       // String text = "";
       // for (int i = 0; i < sizeof(buffer); i++) {
@@ -200,14 +197,47 @@ process_LCD_packets(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
 // Serial.println();
 // Serial.println();
 
-
+/*********************************************************************************************\
+ ***** LCD Packet SERVICE
+\*********************************************************************************************/
+} else if (buffer[0] == 0x2 && buffer[1] == 0x3) { //if packet starts with a 10 02 01 03 its an LCD Packet  the_packet.startsWith("0x1 0x3 ")
+      keep_alive_count = 0;
+      //Serial.println("----------------------  LCD Packet SERVICE  ----------------------");
+      // Serial.println(the_packet);
+      // String text = "";
+      // for (int i = 0; i < sizeof(buffer); i++) {
+      //   text += (char)buffer[i];
+      // }
+      // text.trim();
+      // for (int i = 0; i < text.length(); i++) {
+      //   Serial.print(text[i]);
+      // }
+      //  Serial.println();
+      process_LCD_packets_SERVICE(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
+/*********************************************************************************************\
+ ***** LCD Packet LONG
+\*********************************************************************************************/
+} else if (buffer[0] == 0x3 && buffer[1] == 0x3) { //if packet starts with a 10 02 01 03 its an LCD Packet  the_packet.startsWith("0x1 0x3 ")
+      keep_alive_count = 0;
+      //Serial.println("----------------------  LCD Packet LONG  ----------------------");
+      // Serial.println(the_packet);
+      // String text = "";
+      // for (int i = 0; i < sizeof(buffer); i++) {
+      //   text += (char)buffer[i];
+      // }
+      // text.trim();
+      // for (int i = 0; i < text.length(); i++) {
+      //   Serial.print(text[i]);
+      // }
+      //  Serial.println();
+      process_LCD_packets_LONG(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
 /*********************************************************************************************\
  ***** OTHER
 \*********************************************************************************************/
 } else {
-      // Serial.println("----------------------  OTHER  ----------------------");
-  keep_alive_count = 0;
-      // Serial.println(the_packet);
+      keep_alive_count = 0;
+      Serial.println("----------------------  OTHER  ----------------------");
+      Serial.println(the_packet);
 }
 }
 

@@ -195,8 +195,9 @@ void send_btn_command() {
     
     for (int i = 0; i < 3; i++) {
       delayMicroseconds(600); // Delay between each byte
+      Serial.print("Send btn Command number ");
       Serial.print(i);
-       Serial.print(" btn_command_to_send: ");     
+       Serial.print(": ");     
       for (int ii = 0; ii < btn_command_size; ii++) {
         RS485Serial.write(btn_command_to_send[ii]); // Send the byte value
         Serial.print(btn_command_to_send[ii]);

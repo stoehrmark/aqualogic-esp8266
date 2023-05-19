@@ -12,6 +12,7 @@ byte the_packet_end[] = {0x10, 0x03};
 //uint8_t btn_command_to_send[16];
 ////uint8_t btn_command_to_send[];
 int btn_send_yes = 0;
+int keep_alive_count = 0;
 /*********************************************************************************************\
  ***** HTML LED color PICK ONLY ONE!
 \*********************************************************************************************/

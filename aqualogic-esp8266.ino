@@ -86,17 +86,28 @@ void the_packet_Buffer() {
 /*********************************************************************************************\
  ***** KEEP ALIVE
 \*********************************************************************************************/
+
 if (buffer[0] == 0x1 && buffer[1] == 0x1) { //10 02 01 01 00 14 10 03 its a keep-alive packet not useful
-      //Serial.println("----------------------  keep-alive  ----------------------");
+      Serial.print("----------------------  keep-alive  ----------------------");
+       Serial.println(keep_alive_count);     
       // Serial.println(the_packet);
       // Serial.println();
-      
-send_btn_command();
+
+keep_alive_count++;   
+
+// if (keep_alive_count >= 5){
+//   keep_alive_count = 0;
+// } 
+if (keep_alive_count == 1 && btn_send_yes == 1){
+  send_btn_command();
+  keep_alive_count = 0;
+}  
 /*********************************************************************************************\
  ***** LED STATUS
 \*********************************************************************************************/
 } else if (buffer[0] == 0x1 && buffer[1] == 0x2) { //if packet starts with a 10 02 01 02 its an LED Status
-      //Serial.println("----------------------  LED Status  ----------------------");
+      Serial.println("----------------------  LED Status  ----------------------");
+  keep_alive_count = 0;
       byte bitArray[2][8];
       for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 8; j++) {
@@ -134,7 +145,8 @@ send_btn_command();
  ***** LCD Packet
 \*********************************************************************************************/
 } else if (buffer[0] == 0x1 && buffer[1] == 0x3) { //if packet starts with a 10 02 01 03 its an LCD Packet  the_packet.startsWith("0x1 0x3 ")
-      //Serial.println("----------------------  LCD Packet  ----------------------");
+      Serial.println("----------------------  LCD Packet  ----------------------");
+  keep_alive_count = 0;
       //Serial.println(the_packet);
       // String text = "";
       // for (int i = 0; i < sizeof(buffer); i++) {
@@ -194,6 +206,7 @@ process_LCD_packets(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
 \*********************************************************************************************/
 } else {
       // Serial.println("----------------------  OTHER  ----------------------");
+  keep_alive_count = 0;
       // Serial.println(the_packet);
 }
 }

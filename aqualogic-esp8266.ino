@@ -88,8 +88,8 @@ void the_packet_Buffer() {
 \*********************************************************************************************/
 
 if (buffer[0] == 0x1 && buffer[1] == 0x1) { //10 02 01 01 00 14 10 03 its a keep-alive packet not useful
-      Serial.print("----------------------  keep-alive  ----------------------");
-       Serial.println(keep_alive_count);     
+      //Serial.print("----------------------  keep-alive  ----------------------");
+       //Serial.println(keep_alive_count);     
       // Serial.println(the_packet);
       // Serial.println();
 

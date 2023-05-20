@@ -13,6 +13,7 @@ byte the_packet_end[] = {0x10, 0x03};
 ////uint8_t btn_command_to_send[];
 int btn_send_yes = 0;
 int keep_alive_count = 0;
+String LCD_color = "green";
 /*********************************************************************************************\
  ***** HTML LED color PICK ONLY ONE!
 \*********************************************************************************************/
@@ -61,6 +62,8 @@ int led_aux6 = 0;
 int     lcd_air_temp = 0;
 int     lcd_salt_level = 0;
 int     lcd_pool_temp = 0;
+int     lcd_pool_temp_f = 0;
+int     lcd_pool_temp_c = 0;
 int     lcd_chlorinator_value = 0;
 String  lcd_filter_speed = "";
 String  lcd_heater_status = "";

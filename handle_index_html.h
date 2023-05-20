@@ -1,6 +1,8 @@
 void handle_index_html() {
   String content = index_html;
 
+  content.replace("$LCD_COLOUR", LCD_color);
+
   content.replace("$FILTER", (led_filter == 1) ? LED_color : ((led_filter == 2) ? LED_color + " blink" : "off"));  
   content.replace("$SERVICE", (led_service == 1) ? "red" : ((led_service == 2) ? "red blink" : "off"));
   content.replace("$CHECK_SYSTEM", led_check_system ? "orange blink" : "off");
@@ -38,6 +40,11 @@ void handle_index_html() {
   content.replace("$CUSTOM_AUX5", custom_aux5);
   content.replace("$CUSTOM_AUX6", custom_aux6); 
 
+  content.replace("$INFO_POOL_TEMP_F", String(lcd_pool_temp_f)); 
+  content.replace("$INFO_POOL_TEMP_C", String(lcd_pool_temp_c)); 
+  content.replace("$INFO_HEATER1", String(lcd_heater_status)); 
+  content.replace("$INFO_SALT", String(lcd_salt_level)); 
+
   content.replace("$CHIP_ID", String(ESP.getChipId()));
   content.replace("$CPU_FREQ", String(ESP.getCpuFreqMHz()));
   content.replace("$FLASH_CHIP_ID", String(ESP.getFlashChipId()));
@@ -71,7 +78,7 @@ void handleAjaxRequest() {
   response += "\"led_aux4\":\"" + String(led_aux4 ? LED_color : "off") + "\", ";
   response += "\"led_aux5\":\"" + String(led_aux5 ? LED_color : "off") + "\", ";
   response += "\"led_aux6\":\"" + String(led_aux6 ? LED_color : "off") + "\", ";
-  response += "\"xxxxxx\":\"" + String(led_aux2 ? LED_color : "off") + "\"";
+  response += "\"lcd_display_area\":\"" + String(LCD_color) + "\"";
   response += "}";
   server.send(200, "application/json", response);
 }

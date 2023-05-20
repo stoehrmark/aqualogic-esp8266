@@ -9,6 +9,7 @@ const char* index_html = R"=====(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aqualogic Control Panel</title>
     <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
       body {
         color: #FFFFFF;
@@ -35,6 +36,15 @@ const char* index_html = R"=====(
       .row {
         display: flex;
         flex-direction: row;
+      }
+
+      .info {
+		font-size: smaller;
+        display: flex;
+        flex-direction: row;
+		flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
       }
 
       .col {
@@ -116,21 +126,27 @@ const char* index_html = R"=====(
       }
 
       .lcd_display_area {
-        border: 2px solid green;
         border-radius: 5px;
         flex: 2;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 5px;
-        background-color: #98FB98;
         font-family: VT323;
-        color: black;
         min-height: 50px;
         font-size: calc(1vw + 1vh + 1vmin);
         line-height: .7;
       }
-
+	  .lcd_display_area.green {
+		border: 2px solid green;
+		background-color: #98FB98;
+		color: black;
+	  }
+	  .lcd_display_area.red {
+		border: 2px solid red;
+		background-color: #fb9898;
+		color: black;
+	  }
       .check_system_area {
         flex: .5;
         display: flex;
@@ -176,6 +192,9 @@ const char* index_html = R"=====(
             $("#lcd_line2").text(response.lcd_line2);
             //console.log(response);
 
+          var $lcd_display_area = $("#lcd_display_area");
+          $lcd_display_area.removeClass("green red");
+          $lcd_display_area.addClass(response.lcd_display_area);
           var $led_check_system = $("#led_check_system");
           $led_check_system.removeClass("green blue red orange off blink");
           $led_check_system.addClass(response.led_check_system);
@@ -239,7 +258,7 @@ const char* index_html = R"=====(
   <body>
     <div class="container">
       <div class="row">
-        <div class="lcd_display_area">
+        <div id="lcd_display_area" class="lcd_display_area $LCD_COLOUR">
           <div class="lcd_display">
             <div class="status_title" id="lcd_line1">$LCD_LINE1</div>
             <div class="status_value" id="lcd_line2">$LCD_LINE2</div>
@@ -419,8 +438,26 @@ const char* index_html = R"=====(
     </div>
   </div>
 </form>
+<form method="GET" action="/form">
+  <div class="function_btn">
+    <div style="flex: 1;">
+		<button name="control_btn" value="_search" type="submit"><i class="fa fa-eye" aria-hidden="true"></i></button>
+	</div>
+    <div style="flex: 1;">
+      <button class="" name="control_btn" value="aux6" type="submit"></button>
+    </div>
+    <div style="flex: 1;">
+      <button class="" name="control_btn" value="_settings" type="submit"><i class="fa fa-wrench" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</form>
         </div>
       </div>
+<div class="info">
+<div>Pool: <span id="info_pool_temp_f">$INFO_POOL_TEMP_F</span>°F (<span id="info_pool_temp_s">$INFO_POOL_TEMP_C</span>°C)</div>
+<div>Heater Status: <span id="info_heater1">$INFO_HEATER1</span></div>
+<div>Salt Level: <span id="info_salt">$INFO_SALT</span> PPM</div>
+</div>
     </div>
   </body>
 </html>

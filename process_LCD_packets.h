@@ -95,6 +95,8 @@ if (line1.indexOf("Heater1") != -1) {
       }
     }
     lcd_pool_temp = pool_temp_str.toInt();
+    lcd_pool_temp_f = pool_temp_str.toInt();    
+    lcd_pool_temp_c = (lcd_pool_temp_f - 32) * 5 / 9;  // Conversion to Celsius
     // Serial.print("Pool Temp: ");
     // Serial.println(lcd_pool_temp);
 // Air Temp

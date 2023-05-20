@@ -60,6 +60,7 @@ void handle_index_html() {
 
 void handleAjaxRequest() {
   String response = "{";
+  response += "\"lcd_colour\":\"" + String(LCD_color) + "\", ";
   response += "\"lcd_line1\":\"" + String(line1) + "\", ";
   response += "\"lcd_line2\":\"" + String(line2) + "\", ";
   response += "\"led_check_system\":\"" + String(led_check_system ? "orange blink" : "off") + "\", ";
@@ -78,7 +79,10 @@ void handleAjaxRequest() {
   response += "\"led_aux4\":\"" + String(led_aux4 ? LED_color : "off") + "\", ";
   response += "\"led_aux5\":\"" + String(led_aux5 ? LED_color : "off") + "\", ";
   response += "\"led_aux6\":\"" + String(led_aux6 ? LED_color : "off") + "\", ";
-  response += "\"lcd_display_area\":\"" + String(LCD_color) + "\"";
+  response += "\"lcd_pool_temp_f\":\"" + String(lcd_pool_temp_f) + "\", ";
+  response += "\"lcd_pool_temp_c\":\"" + String(lcd_pool_temp_c) + "\", ";
+  response += "\"lcd_heater_status\":\"" + String(lcd_heater_status) + "\", ";
+  response += "\"lcd_salt_level\":\"" + String(lcd_salt_level) + "\"";
   response += "}";
   server.send(200, "application/json", response);
 }

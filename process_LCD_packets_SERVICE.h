@@ -22,6 +22,7 @@ void process_LCD_packets_SERVICE(byte* hexArray, int arrayLength, String& line1,
     line1 += (char)hexArray[j];
   }
   line1.trim();
+
 /*********************************************************************************************\
  ***** Build line2 and Replace (_ with space)**Temperatures  (º with :)**Time
 \*********************************************************************************************/
@@ -47,9 +48,22 @@ void process_LCD_packets_SERVICE(byte* hexArray, int arrayLength, String& line1,
     }
   }
   line2.trim();
+
+// Serial.println(line1);
+// Serial.println(line2);
+// Serial.println();
 /*********************************************************************************************\
  ***** GET INDIVIDUAL VALUES
 \*********************************************************************************************/
+// LCD Colour
+// if (line1.indexOf("Service Mode") != -1) {
+//       LCD_color = "red";
+//         //Serial.print("Heater1 Status: ");
+//         //Serial.println(heater1_status);
+// }
+// } else {
+//         LCD_color = "green";
+// }
 // HEARTER1
 if (line1.indexOf("Heater1") != -1) {
     if (line2.indexOf("Auto") != -1) {

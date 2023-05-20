@@ -47,6 +47,9 @@ void process_LCD_packets_LONG(byte* hexArray, int arrayLength, String& line1, St
     }
   }
   line2.trim();
+//   Serial.println(line1);
+// Serial.println(line2);
+// Serial.println();
 /*********************************************************************************************\
  ***** GET INDIVIDUAL VALUES
 \*********************************************************************************************/

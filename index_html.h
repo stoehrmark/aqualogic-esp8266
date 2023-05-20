@@ -195,7 +195,7 @@ const char* index_html = R"=====(
 
           var $lcd_display_area = $("#lcd_display_area");
           $lcd_display_area.removeClass("green red");
-          $lcd_display_area.addClass(response.lcd_display_area);
+          $lcd_display_area.addClass(response.lcd_colour);
           var $led_check_system = $("#led_check_system");
           $led_check_system.removeClass("green blue red orange off blink");
           $led_check_system.addClass(response.led_check_system);
@@ -292,6 +292,11 @@ const char* index_html = R"=====(
 
 		</div>
 		</div>
+    <div class="info">
+<div>Pool: <span id="info_pool_temp_f">$INFO_POOL_TEMP_F</span>°F ( <span id="info_pool_temp_c">$INFO_POOL_TEMP_C</span>°C )</div>
+<div>Heater Status: <span id="info_heater1">$INFO_HEATER1</span></div>
+<div>Salt Level: <span id="info_salt">$INFO_SALT</span> PPM</div>
+</div>
 		<div class="row">
         <div class="col">
 <form method="GET" action="/form">
@@ -458,11 +463,6 @@ const char* index_html = R"=====(
 </form>
         </div>
       </div>
-<div class="info">
-<div>Pool: <span id="info_pool_temp_f">$INFO_POOL_TEMP_F</span>°F ( <span id="info_pool_temp_c">$INFO_POOL_TEMP_C</span>°C )</div>
-<div>Heater Status: <span id="info_heater1">$INFO_HEATER1</span></div>
-<div>Salt Level: <span id="info_salt">$INFO_SALT</span> PPM</div>
-</div>
     </div>
   </body>
 </html>

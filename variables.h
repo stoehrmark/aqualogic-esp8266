@@ -81,7 +81,6 @@ String lcd_aux6_btn = "OFF";
 
 
 
-
 // int salt_level = 0;
 // String heater1_status;
 // int filter_speed = 0;

@@ -143,7 +143,9 @@ if (buffer[0] == 0x1 && buffer[1] == 0x1) { //10 02 01 01 00 14 10 03 its a keep
 \*********************************************************************************************/
 } else if (buffer[0] == 0x1 && buffer[1] == 0x3) { //if packet starts with a 10 02 01 03 its an LCD Packet  the_packet.startsWith("0x1 0x3 ")
       keep_alive_count = 0;
+      LCD_color = "green";
       //Serial.println("----------------------  LCD Packet  ----------------------");
+      process_LCD_packets(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
       //Serial.println(the_packet);
       // String text = "";
       // for (int i = 0; i < sizeof(buffer); i++) {
@@ -154,8 +156,8 @@ if (buffer[0] == 0x1 && buffer[1] == 0x1) { //10 02 01 01 00 14 10 03 its a keep
       //   Serial.print(text[i]);
       // }
       //  Serial.println();
-   
-process_LCD_packets(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
+      
+
   // Serial.print("Line1: ");
   // Serial.println(line1);
   // Serial.print("Line2: ");
@@ -202,7 +204,9 @@ process_LCD_packets(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
 \*********************************************************************************************/
 } else if (buffer[0] == 0x2 && buffer[1] == 0x3) { //if packet starts with a 10 02 01 03 its an LCD Packet  the_packet.startsWith("0x1 0x3 ")
       keep_alive_count = 0;
+      LCD_color = "red";
       //Serial.println("----------------------  LCD Packet SERVICE  ----------------------");
+      process_LCD_packets_SERVICE(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
       // Serial.println(the_packet);
       // String text = "";
       // for (int i = 0; i < sizeof(buffer); i++) {
@@ -213,13 +217,15 @@ process_LCD_packets(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
       //   Serial.print(text[i]);
       // }
       //  Serial.println();
-      process_LCD_packets_SERVICE(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
+      
 /*********************************************************************************************\
- ***** LCD Packet LONG
+ ***** LCD Packet SERVICE Message 
 \*********************************************************************************************/
 } else if (buffer[0] == 0x3 && buffer[1] == 0x3) { //if packet starts with a 10 02 01 03 its an LCD Packet  the_packet.startsWith("0x1 0x3 ")
       keep_alive_count = 0;
+      LCD_color = "red";
       //Serial.println("----------------------  LCD Packet LONG  ----------------------");
+      // process_LCD_packets_LONG(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
       // Serial.println(the_packet);
       // String text = "";
       // for (int i = 0; i < sizeof(buffer); i++) {
@@ -230,23 +236,26 @@ process_LCD_packets(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
       //   Serial.print(text[i]);
       // }
       //  Serial.println();
-      process_LCD_packets_LONG(buffer, sizeof(buffer) / sizeof(buffer[0]), line1, line2);
 /*********************************************************************************************\
  ***** OTHER
 \*********************************************************************************************/
 } else {
       keep_alive_count = 0;
       // Serial.println("----------------------  OTHER  ----------------------");
-      // Serial.println(the_packet);
       // String text = "";
       // for (int i = 0; i < sizeof(buffer); i++) {
       //   text += (char)buffer[i];
-
+      //   Serial.print(buffer[i]);
+      //   Serial.print(" ");
       // }
       // text.trim();
+      //  Serial.println();
+      //  Serial.println();
       // for (int i = 0; i < text.length(); i++) {
       //   Serial.print(text[i]);
       // }
+      //  Serial.println();
+      //  Serial.println();
       //  Serial.println();
 }
 }

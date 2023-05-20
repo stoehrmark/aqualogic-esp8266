@@ -169,13 +169,14 @@ const char* index_html = R"=====(
         .container {
           width: 99vw;
         }
-
         .row {
           flex-direction: column;
         }
-
         .col {
           flex: auto;
+        }
+        .info {
+          flex-direction: column;
         }
       }
     </style>
@@ -243,6 +244,10 @@ const char* index_html = R"=====(
           var $ledAux6 = $("#led_aux6");
           $ledAux6.removeClass("green blue red orange off blink");
           $ledAux6.addClass(response.led_aux6);
+          $("#info_pool_temp_f").text(response.lcd_pool_temp_f);
+          $("#info_pool_temp_c").text(response.lcd_pool_temp_c);
+          $("#info_heater1").text(response.lcd_heater_status);
+          $("#info_salt").text(response.lcd_salt_level);
 
 
           },
@@ -454,7 +459,7 @@ const char* index_html = R"=====(
         </div>
       </div>
 <div class="info">
-<div>Pool: <span id="info_pool_temp_f">$INFO_POOL_TEMP_F</span>°F (<span id="info_pool_temp_s">$INFO_POOL_TEMP_C</span>°C)</div>
+<div>Pool: <span id="info_pool_temp_f">$INFO_POOL_TEMP_F</span>°F ( <span id="info_pool_temp_c">$INFO_POOL_TEMP_C</span>°C )</div>
 <div>Heater Status: <span id="info_heater1">$INFO_HEATER1</span></div>
 <div>Salt Level: <span id="info_salt">$INFO_SALT</span> PPM</div>
 </div>
